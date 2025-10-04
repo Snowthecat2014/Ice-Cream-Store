@@ -8,10 +8,10 @@ while repeat == "yes":
     scoops_times = 0
     cone_cup_times = 0
     repeat_times = 0
-    flavor_choices = ["Vanilla", "Chocolate", "Strawberry", "Coffee", "Mint", "Matcha", "Cotton Candy", "Birthday Cake"]
-    flavor_price = ["$3.99", "$3.99", "$3.99", "$4.50", "$4.50", "$4.50", "$4.50", "$4.50"]
+    flavor_choices = ["Vanilla", "Chocolate", "Strawberry", "Banana", "Coffee", "Mint", "Matcha", "Cotton Candy", "Birthday Cake"]
+    flavor_price = ["$3.99", "$3.99", "$3.99", "$3.99", "$4.50", "$4.50", "$4.50", "$4.50", "$4.50"]
     flavor = ""
-    for flavor_times in range(8):
+    for flavor_times in range(9):
         flavor = flavor + "\n" + str(flavor_times + 1) + ".\t" + flavor_choices[flavor_times] + "-" * 10 + flavor_price[flavor_times]
         flavor_times = flavor_times + 1
     flavor = input(flavor + "\t")
