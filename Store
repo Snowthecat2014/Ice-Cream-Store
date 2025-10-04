@@ -1,0 +1,78 @@
+import math
+
+times = 1
+repeat = "yes"
+print("\t\t===🍦Scoop It Up!🍦===\nHello! What ice cream flavor do you want (between 1 and 8)?")
+while repeat == "yes":
+    flavor_times = 0
+    scoops_times = 0
+    cone_cup_times = 0
+    repeat_times = 0
+    flavor_choices = ["Vanilla", "Chocolate", "Strawberry", "Coffee", "Mint", "Matcha", "Cotton Candy", "Birthday Cake"]
+    flavor_price = ["$3.99", "$3.99", "$3.99", "$4.50", "$4.50", "$4.50", "$4.50", "$4.50"]
+    flavor = ""
+    for flavor_times in range(8):
+        flavor = flavor + "\n" + str(flavor_times + 1) + ".\t" + flavor_choices[flavor_times] + "-" * 10 + flavor_price[flavor_times]
+        flavor_times = flavor_times + 1
+    flavor = input(flavor + "\t")
+    scoops_choices = ["1", "2", "3", "4", "5", "6", "7"]
+    scoops = ""
+    for scoops_times in range(7):
+        scoops = scoops + "\n\n" + scoops_choices[scoops_times]
+        scoops_times = scoops_times + 1
+    scoops = input("How many scoops do you want?\n[Discount]:\tBuy 5 scoops (or more), and get 10% off" + scoops + "\n")
+    cone_cup_choices = ["Cone", "Cup"]
+    cone_cup = ""
+    for cone_cup_times in range(2):
+        cone_cup = cone_cup + "\n\n" + cone_cup_choices[cone_cup_times] + "\t(+$0."  + str(cone_cup_times * 5) + "0)"
+        cone_cup_times = cone_cup_times + 1
+    cone_cup = input("Do you want a cone or a cup?\n" + cone_cup)
+
+    flavor = str(flavor_choices[int(flavor) - 1]).lower()
+    scoops = int(scoops)
+    cone_cup = str(cone_cup).lower()
+    extra_costs = ["coffee", "mint", "matcha", "cotton candy", "birthday cake"]
+
+    if scoops == 1:
+        s_ = " "
+    else:
+        s_ = "s "
+
+    if cone_cup == "cone":
+        extra_cone_cup = 0.50
+    else:
+        extra_cone_cup = 0.00
+
+    if scoops >= 5:
+        discount = 0.10
+    else:
+        discount = 0.00
+    
+    if flavor in extra_costs:
+        flavor_price = 4.50
+    else:
+        flavor_price = 3.99
+    
+    price = flavor_price * scoops + extra_cone_cup
+    tax = price * 0.13
+    price_with_tax = price + tax
+    price_with_tax_and_discount = (price_with_tax * discount) + price_with_tax
+    if times == 1:
+        total_price = price_with_tax_and_discount
+        rest_of_parts = " "
+        saved_flavor = flavor
+        saved_scoops = scoops
+        saved_cone_cup = cone_cup
+    else:
+        total_price = total_price + price_with_tax_and_discount
+        rest_of_parts = rest_of_parts + "and " + str(scoops) + " scoop" + s_ + "of " + flavor + " ice cream in a " + cone_cup + " "
+    repeat_choices = ["Yes", "No"]
+    repeat = ""
+    for repeat_times in range(2):
+        repeat = repeat + "\n\n" + repeat_choices[repeat_times]
+        repeat_times = repeat_times + 1
+    repeat = str(input("Do you want another ice cream?\n" + repeat)).lower()
+    times = times + 1
+
+print("\n\n" + str(saved_scoops) + " scoop" + s_ + "of " + saved_flavor + " ice cream in a " + saved_cone_cup + rest_of_parts + "is coming right up!\n\n")
+print("The total price is $" + str(math.floor(total_price * 100)* 0.01) + ".")
